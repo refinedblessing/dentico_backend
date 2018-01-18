@@ -4,7 +4,7 @@ class CreateAppointments < ActiveRecord::Migration[5.1]
       t.datetime :start_time
       t.datetime :end_time
       t.references :user, foreign_key: true
-      t.integer :status
+      t.integer :status, default: 0
 
       t.timestamps
     end

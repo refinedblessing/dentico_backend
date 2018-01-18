@@ -1,7 +1,7 @@
 class CreateReceipts < ActiveRecord::Migration[5.1]
   def change
     create_table :receipts do |t|
-      t.integer :type
+      t.integer :type, default: 0
       t.decimal :cost
       t.references :user, foreign_key: true
 
