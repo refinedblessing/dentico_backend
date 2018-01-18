@@ -2,6 +2,7 @@ require 'test_helper'
 
 class ReceiptsControllerTest < ActionDispatch::IntegrationTest
   setup do
+    DatabaseCleaner.start
     @receipt = receipts(:one)
   end
 
@@ -12,7 +13,7 @@ class ReceiptsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create receipt" do
     assert_difference('Receipt.count') do
-      post receipts_url, params: { receipt: { cost: @receipt.cost, type: @receipt.type, user_id: @receipt.user_id } }, as: :json
+      post receipts_url, params: { receipt: { cost: @receipt.cost, type: @receipt.payment_type, appointment_id: @receipt.appointment_id } }, as: :json
     end
 
     assert_response 201
@@ -24,15 +25,15 @@ class ReceiptsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update receipt" do
-    patch receipt_url(@receipt), params: { receipt: { cost: @receipt.cost, type: @receipt.type, user_id: @receipt.user_id } }, as: :json
+    patch receipt_url(@receipt), params: { receipt: { cost: @receipt.cost, type: @receipt.payment_type, appointment_id: @receipt.appointment_id } }, as: :json
     assert_response 200
   end
 
-  test "should destroy receipt" do
-    assert_difference('Receipt.count', -1) do
-      delete receipt_url(@receipt), as: :json
-    end
-
-    assert_response 204
-  end
+  # test "should destroy receipt" do
+  #   assert_difference('Receipt.count', -1) do
+  #     delete receipt_url(@receipt), as: :json
+  #   end
+  #
+  #   assert_response 204
+  # end
 end

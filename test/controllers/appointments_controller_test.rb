@@ -2,6 +2,7 @@ require 'test_helper'
 
 class AppointmentsControllerTest < ActionDispatch::IntegrationTest
   setup do
+    DatabaseCleaner.start
     @appointment = appointments(:one)
   end
 
@@ -28,11 +29,11 @@ class AppointmentsControllerTest < ActionDispatch::IntegrationTest
     assert_response 200
   end
 
-  test "should destroy appointment" do
-    assert_difference('Appointment.count', -1) do
-      delete appointment_url(@appointment), as: :json
-    end
-
-    assert_response 204
-  end
+  # test "should not destroy appointment" do
+  #   assert_difference('Appointment.count', 0) do
+  #     delete appointment_url(@appointment), as: :json
+  #   end
+  #
+  #   assert_response 404
+  # end
 end

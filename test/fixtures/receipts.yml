@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  type: 1
+  payment_type: 1
   cost: 9.99
-  user: one
+  appointment: one
 
 two:
-  type: 1
+  payment_type: 1
   cost: 9.99
-  user: two
+  appointment: two
