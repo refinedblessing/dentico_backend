@@ -34,9 +34,9 @@ class UsersController < ApplicationController
   end
 
   # DELETE /users/1
-  def destroy
-    @user.destroy
-  end
+  # def destroy
+  #   @user.destroy
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -46,6 +46,6 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:type, :name, :email, :phone, :sex, :city_code, :age)
+      params.require(:user).permit(:user_type, :name, :email, :phone, :sex, :age)
     end
 end

@@ -1,4 +1,4 @@
 class ReceiptSerializer < ActiveModel::Serializer
-  attributes :id, :type, :cost
-  has_one :user
+  attributes :id, :payment_type, :cost
+  has_one :appointment
 end

@@ -34,9 +34,9 @@ class ReceiptsController < ApplicationController
   end
 
   # DELETE /receipts/1
-  def destroy
-    @receipt.destroy
-  end
+  # def destroy
+  #   @receipt.destroy
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -46,6 +46,6 @@ class ReceiptsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def receipt_params
-      params.require(:receipt).permit(:type, :cost, :user_id)
+      params.require(:receipt).permit(:payment_type, :cost, :appointment_id)
     end
 end

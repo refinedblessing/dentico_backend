@@ -23,19 +23,19 @@ ActiveRecord::Schema.define(version: 20180118170134) do
   end
 
   create_table "receipts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "type", default: 0
+    t.integer "payment_type", default: 0
     t.decimal "cost", precision: 10
-    t.bigint "user_id"
+    t.bigint "appointment_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_receipts_on_user_id"
+    t.index ["appointment_id"], name: "index_receipts_on_appointment_id"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "type", default: 0
+    t.integer "user_type", default: 0
     t.string "name"
     t.string "email"
-    t.integer "phone"
+    t.string "phone"
     t.integer "sex"
     t.integer "age"
     t.datetime "created_at", null: false
@@ -44,5 +44,5 @@ ActiveRecord::Schema.define(version: 20180118170134) do
   end
 
   add_foreign_key "appointments", "users"
-  add_foreign_key "receipts", "users"
+  add_foreign_key "receipts", "appointments"
 end
