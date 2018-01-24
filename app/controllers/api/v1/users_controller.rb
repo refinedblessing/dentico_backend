@@ -3,13 +3,16 @@ class Api::V1::UsersController < ApplicationController
 
   # GET /users
   def index
+    # how to include new field like total no of appts and revenue cost
     @users = User.all
 
     render json: @users
   end
 
-  # GET /users/1
+  # GET /users/1?receipts=true&appts=true
   def show
+    @user.includes(:receipts) if params[:receipts]
+    @user.includes(:appointments) if params[:appts]
     render json: @user
   end
 
@@ -33,10 +36,6 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
-  def appts
-    render json: @user.appointments
-  end
-
   # DELETE /users/1
   # def destroy
   #   @user.destroy
@@ -45,7 +44,7 @@ class Api::V1::UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find(params[:id])
+      @user = User.find(params[:id]).includes(:total_revenue, :no_of_appts)
     end
 
     # Only allow a trusted parameter "white list" through.

@@ -8,8 +8,8 @@
   )
 
   Appointment.create(
-    end_time: Faker::Time.forward(i+1, :morning),
-    start_time: Faker::Time.forward(i+1, :afternoon),
+    end_time: Faker::Time.forward(i+1, :afternoon),
+    start_time: Faker::Time.forward(i+1, :morning),
     user_id: i+1,
     status: Faker::Number.between(0, 2)
   )

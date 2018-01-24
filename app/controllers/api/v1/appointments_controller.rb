@@ -1,15 +1,21 @@
 class Api::V1::AppointmentsController < ApplicationController
   before_action :set_appointment, only: [:show, :update, :receipt]
 
-  # GET /appointments
+  # GET /appointments?start_time=datetime&end_time=datetime
   def index
-    @appointments = Appointment.all
+    if params[:start_time] && params[:end_time]
+      @appointments =
+        Appointment.between(params[:start_time], params[:end_time])
+    else
+      @appointments = Appointment.all
+    end
 
     render json: @appointments
   end
 
-  # GET /appointments/1
+  # GET /appointments/1?receipt=true
   def show
+    @appointment.includes(:receipt) if params[:receipt]
     render json: @appointment
   end
 
@@ -30,10 +36,6 @@ class Api::V1::AppointmentsController < ApplicationController
     else
       render json: @appointment.errors, status: :unprocessable_entity
     end
-  end
-
-  def receipt
-    render json: @appointment.receipt
   end
 
   # DELETE /appointments/1

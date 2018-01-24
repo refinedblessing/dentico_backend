@@ -5,6 +5,10 @@ class Receipt < ApplicationRecord
   default_scope -> { order(created_at: :desc) }
   validate :appointment_is_completed
 
+  scope :between, -> (start_datetime, end_datetime) {
+    where("updated_at between ? and ?", start_datetime, end_datetime)
+  }
+
   private
 
   def appointment_is_completed
